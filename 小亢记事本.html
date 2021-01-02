@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小亢记事本</title>
+    <link rel="stylesheet" type="text/css" href="./css/xiaoertext.css" /> 
+    <style type="text/css">
+        body{text-align:center;}/*针对老式浏览器*/
+        div{margin:0 auto;width:500px;}/*要指bai定宽度*/
+        img{height: 600;width: 1000;}
+    </style>
+</head>
+<body>
+    <div style="height: 67px; max-height: 989px;" id="app"> 
+    <div class="main">  
+        <h2>小亢记事本</h2>   
+        <ul  class="heroes">   
+          <input type="text" placeholder="添加记事(enter添加)" v-model="message" @keyup.enter="add">
+          <li  v-for="(lis,index) in list">{{index+1}}.{{lis}} 
+            <button  class="del_list" @click="del(index)">X</button>
+          </li>  
+          <footer class="footer">
+            <span v-if="list.length!=0"><strong>{{list.length}}</strong> items left</span>
+            <button v-if="list.length!=0" class="del_list" @click="clear_list">clear</button>
+        </footer>
+        </ul>   
+
+    </div>
+      </div>  
+ <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app= new Vue({
+        el: "#app",
+        data:{
+            list:["吃饭饭","睡觉觉","打豆豆"],
+            message: "好好学习，天天向上"
+        },
+        methods: {
+
+            add:function() {
+                this.list.push(this.message)
+            },
+            del:function(index){
+                console.log("删除");
+                console.log(index)
+                this.list.splice(index,1)
+                
+            },
+            clear_list: function(){
+                this.list=[];
+            }
+        },
+    })
+</script>
+</body>
+</html>

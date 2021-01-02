@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <input type="button" @click="changeImage" value="隐藏/显示图片" /><br/>
+        <img v-show="isShow" src="/home/xqkang/.vscode/image/11.gif"><br/>
+
+        <input type="button" @click="subAge" value="减少年龄"/>
+        年龄：{{age}}
+        <input type="button" @click="addAge" value="增加年龄"/><br/>
+        <span>年龄大于等于18才会显示图片</span><br/>
+        <img v-show="age>17" src="/home/xqkang/.vscode/image/22.gif"><br/>
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data:{
+            isShow:false,
+            age:17
+        },
+        methods: {
+            changeImage:function(){
+                this.isShow=!this.isShow;
+            },
+            addAge:function(){
+                this.age++;
+            },
+            subAge:function(){
+                this.age--;
+            }
+
+        },
+    })
+</script>
+</body>
+</html>

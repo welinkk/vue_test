@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>My first Vue app</title>
+  <!-- <script src="https://unpkg.com/vue"></script> -->
+  <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app" class="demo">
+    <!-- 1.直接引用 -->
+    {{ message }}
+    <h2>{{ message }}</h2>
+
+    <!-- 2.引用json -->
+    <h3>{{ school.name }} {{school.mobile}}</h3>
+
+    <!-- 3.引用数组 -->
+    <ul>
+      <li>{{campus[0]}}</li>
+      <li>{{campus[1]}}</li>
+      <li>{{campus[2]}}</li>
+    </ul>
+
+    <!-- v-once引用一次不会更改 -->
+    <!-- v-pre 不会应用 -->
+    <!-- 4.v-text(直接输出文本)拼接 -->
+    <h2 v-text="message+'!'"></h2>
+    <!-- //"hhhh"不会打印出来 -->
+    <h2 v-text="message+'!'">hhhh</h2>
+    <!-- //可以都打印出来 -->
+    <h2>贝加尔湖：{{ message }}</h2>
+
+    <!-- 5.v-html按照HTML格式输出转义-->
+    <!-- v-text 输出<a href='http://ww.baidu.com'> 进入百度</a> -->
+    <h3 v-text="bai_addr"></h3>
+    <!-- v-html 输出”进入百度“地址连接 -->
+    <h3 v-html="bai_addr"></h3>
+
+  </div>
+
+
+  <script>
+    var app = new Vue({
+      //el: '#app',//id选择器
+      el: "div",//标签选择器
+      //el: ".demo", //class选择器
+      //el: "h2",
+      //el: "body",//body、html不支持
+      data: {
+        message: '古道上的风从何处起，可他去往的是故乡！',
+        school: {
+          name: "雄安大学",
+          mobile: "1898888888"
+        },
+        campus:["海南岛","台湾岛","库页岛"],
+        bai_addr: "<a href='http://ww.baidu.com'> 进入百度</a> "
+      }
+
+    })
+  </script>
+</body>
+</html>

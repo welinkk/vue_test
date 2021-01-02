@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>test</title>
+    <style>
+        .player_con {
+            width: 400px;
+            height: 435px;
+            position: relative;
+            background: url(./image/line.png) right center no-repeat; 
+        }
+        .autoRotate {
+            animation-name: Rotate;
+            animation-iteration-count: infinite;
+            animation-play-state:running;
+            animation-timing-function: linear;
+            animation-duration: 5s;
+        }
+        .playing {
+            animation-play-state: running;
+        }
+        .disc {
+            position: absolute;
+            left: 73px;
+            top: 60px;
+            z-index: 9;
+        }
+        .cover {
+            position: absolute;
+            left: 125px;
+            top: 112px;
+            width: 150px;
+            height: 150px;
+            border-radius: 75px;
+            z-index: 8;
+        }
+
+        .play_bar {
+            position: absolute;
+            left: 200px;
+            top: -10px;
+            z-index: 10;
+            transform: rotate(-25deg);
+            transform-origin: 12px 12px;
+            transition: 1s;
+        }
+        .play_bar.isPlay {
+            animation-play-state:running;
+            transform: rotate(0);
+            
+        }
+        @-webkit-keyframes rotation{
+        from {-webkit-transform: rotate(0deg);}
+        to {-webkit-transform: rotate(360deg);}
+        }
+
+        .Rotation{
+        -webkit-transform: rotate(360deg);
+        animation-play-state:paused;
+        animation: rotation 3s linear infinite;
+        -moz-animation: rotation 3s linear infinite;
+        -webkit-animation: rotation 5s linear infinite;
+        -o-animation: rotation 3s linear infinite;
+
+        }
+
+        .playing{
+            animation-play-state:running;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    {{isPlaying}}
+    {{name}}
+    <div class="player_con">
+        <img src="./image/player_bar.png" class="play_bar" :class="{isPlay:isPlaying}"> 
+        <img src="./image/disc.png" class="disc Rotation" :class="{playing:isPlaying}" >
+        <img src="https://p2.music.126.net/JwUTCEySzPijv-qtzeScPQ==/109951163240621579.jpg" class="cover Rotation" :class="{playing:isPlaying}">
+    </div>
+
+    <!-- 播放按钮 -->
+    <div class="audio_con">
+        <!-- <audio @play="play" @pause="pause" :src="musicUrl" controls="controls" autoplay="autoplay" loop="loop" class="myaudio" ></audio> -->
+        <button @click="play" type="button" >旋转</button>
+        <button @click="pause" type="button" >停止</button>
+    </div>
+</div>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el:"#app",
+        data:{
+            isPlaying:false,
+            name:"qqqqq"
+        },
+        methods: {
+            
+            play:function(){
+                this.isPlaying=true;
+                console.log(this.isPlaying)
+            },
+            pause:function(){
+                this.isPlaying=false;
+                console.log(this.isPlaying)
+            }
+        },
+
+})
+</script>
+</body>
+</html>

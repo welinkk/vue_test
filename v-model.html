@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model</title>
+</head>
+<body>
+    <div id="app">
+        <input type="button" @click="setM" value="点击修改信息">
+        <input type="text" v-model="message" @keyup.enter="getM" >
+        <h3>{{ message }}</h3>
+    </div>
+<!-- 开发环境版本，包含了有帮助的命令行警告 -->
+<script  src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data:{
+            message: "古道上的风不知从何处起，可他吹往的是故乡！！！"
+        },
+        methods: {
+            getM:function() {
+                alert(this.message);
+            },
+            setM:function(){
+                this.message="劝进更尽一杯酒，西出阳关无故人！"
+            }
+        },
+    })
+</script>
+</body>
+</html>

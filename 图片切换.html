@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>切换图片</title>
+    <style type="text/css">
+        body{text-align:center;}/*针对老式浏览器*/
+        #wrapper{margin:0 auto;width:1000px;}/*要指bai定宽度*/
+        img{height: 600;width: 1000;}
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- {{imgArr.length}} -->
+        <br/>
+        <input type="button" value="<" @click="prev" v-show="index>0"/>
+        <img :src="imgArr[index]" height="600px" width="1000"/>
+        <!-- <a href="javascript:void(0)" v-show="index>0" @click="prev"><</a>
+        <a href="javascript:void(0)" v-show="index<(imgArr.length-1)" @click="next">></a> -->
+        <input type="button" value=">" @click="next" v-show="index<(imgArr.length-1)" />
+    </div>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        var app = new Vue({
+            el:"#app",
+            data:{
+                imgArr:[
+                    "/home/xqkang/.vscode/image/01.jpg",
+                    "/home/xqkang/.vscode/image/02.jpg",
+                    "/home/xqkang/.vscode/image/03.jpg",
+                    "/home/xqkang/.vscode/image/04.jpg",
+                    "/home/xqkang/.vscode/image/05.jpg",
+                    "/home/xqkang/.vscode/image/06.jpg",
+                ],
+                index:0
+            },
+            methods: {
+                prev:function() {
+                    this.index--;
+                },
+                next:function(){
+                    this.index++;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

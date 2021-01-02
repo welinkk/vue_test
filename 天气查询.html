@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小亢说天气</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/search.css">
+    <style type="text/css">
+        body{text-align:center;}/*针对老式浏览器*/
+        div{margin:0 auto;}/*要指bai定宽度*/
+        ul{margin: 0 auto;}
+    </style>
+
+</head>
+<body>
+    <h1>小亢说天气</h1>
+    <div id="app">
+        <!-- {{message}} -->
+        <!-- {{weatherList}} -->
+        <div class="search bar6">
+            <form>
+                <input type="text" @keyup.enter="searchWeather" v-model="city" placeholder="请输入查询的天气">
+                <button type="submit" @click="searchWeather" ></button>
+            </form>
+            <ul class="hotAddr">
+                <li><a href="#" @click="changeCity('北京')">北京</a></li>
+                <li><a href="#" @click="changeCity('上海')">上海</a></li>
+                <li><a href="#" @click="changeCity('广州')">广州</a></li>
+                <li><a href="#" @click="changeCity('深圳')">深圳</a></li>
+            </ul>
+        </div>
+        <div class="weth_list">
+            <div class="addr" >
+                <span id="city">{{curent_city}}</span>天气预报：
+            </div>
+            
+            <ul>
+                <!-- {{weath.date}}：{{weath.fengxiang}} {{weath.low}}~{{weath.high}} {{weath.type}}  -->
+                <li v-for="(weath,index) in weatherList">
+                    <div>
+                        <span id="weath_type">{{weath.type}} </span><br>
+                        <span id="temperature">{{weath.low}}~{{weath.high}}</span><br>
+                        <span id="weath_date">{{weath.date}}</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- 引入axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

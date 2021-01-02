@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>悦听播放器</title>
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/yueting.css">
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+    目标：
+    1.歌曲搜索
+    2.歌曲播放
+    3.歌曲封面
+    4.歌曲评论
+    5.播放动画
+    6.mv播放 
+    -->
+    <!-- <button type="submit" class="test"></button> -->
+    <div id="app" @click="hidd">
+    <!-- <input type="text" @keyup.enter="searchMusic" v-model="query"> -->
+        <div id="=player" class="play_wrap">
+            <!-- 搜索框 -->
+            <!-- <div class="search bar7">
+
+                <div class="title">
+                    <span >悦听</span>
+                </div>
+                <div class="title_left">
+                <form>
+    
+                    <input type="text" placeholder="请输入您要搜索的内容..." @keyup.enter="searchMusic" v-model="query">
+                    <button type="submit"></button>
+                </form>
+                </div> -->
+            <div class="search_bar">   
+                <img src="./image/player_title.png">
+                <div class="title_right">
+                    <input type="text" placeholder="请输入您要搜索的内容..." @keyup.enter="searchMusic" v-model="query">
+                </div>
+            </div>    
+            <!-- </div> -->
+            <!-- 音乐主体 -->
+            <div class="center_con">
+                <div class="song_wrapper" style="touch-action: none;">
+                    <!-- v-cloak去除开始页面{{...}} -->
+                <ul class="song_list" v-cloak>
+                    
+                    <li style v-for="item in musicList">
+                        <a href="javascript:;" @click="playMusic(item.id)">
+                        <b>{{item.name}}--</b></a>
+                        <span v-if="item.mvid!=0" @click="playMV(item.mvid)"><i>mv</i></span>
+                    </li>
+
+                </ul>
+                </div>
+                <div class="player_con" >
+                    <img src="./image/player_bar.png" class="play_bar" :class="{isPlay:isPlaying}" >
+                    <img src="image/disc.png" class="disc autoRotate" :class="{playing:isPlaying}">
+                    <img :src="musicImageUrl" class="cover autoRotate" :class="{playing:isPlaying}">
+                </div>
+                <div class="comment_list">
+                    <div >
+                        热门留言:
+                        <dl v-for="item in hotComments">
+                            <dt><img id="com_uimg" :src="item.user.avatarUrl"> </dt>
+                            <dd class="name">{{item.user.nickname}}</dd>
+                            <dd class="detail">{{item.content}}</dd>
+                        </dl>
+                        </div>
+                </div>
+
+            </div>
+
+            <!-- 播放按钮 -->
+            <div class="audio_con">
+                <audio @play="play" @pause="pause" :src="musicUrl" controls="controls" autoplay="autoplay" loop="loop" class="myaudio" ></audio>
+            </div>
+        </div>
+        <div class="video_con" v-show="isShow" style="display: none;" >
+            <video :src="mvURL" controls="controls"></video>
+            <!-- <div class="mask" @click="hidd" ></div> -->
+        </div>
+    </div>
+    <!-- 引入axios -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./js/yueting.js"></script>
+</body>
+</html>
